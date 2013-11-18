@@ -3,6 +3,13 @@ cn2uc
 
 中文转unicode
 
+### Installation
+
+```
+npm install cn2uc -g
+```
+### Help
+
 ```
 Usage: cn2uc [options]
 
