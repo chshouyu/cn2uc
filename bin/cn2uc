@@ -14,12 +14,20 @@ program
 program.on('--help', function() {
     console.log('  Examples:');
     console.log('');
-    console.log('    cn2uc --input /path/to/inputfile --output /path/to/outfile');
-    console.log('    cn2uc --string "去哪吃啊？"');
+    console.log('    cn2uc -i /path/to/inputfile -o /path/to/outfile');
+    console.log('    or');
+    console.log('    cn2uc -s "去哪吃啊？"');
     console.log('');
 });
 
 program.parse(process.argv);
+
+/**
+ * show help information if no argv
+ */
+if (!process.argv.slice(2).length) {
+    program.help();
+}
 
 /**
  * replace chinese to unicode
