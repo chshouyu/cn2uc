@@ -1,25 +1,34 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
+    path = require('path'),
     program = require('commander'),
     pkg = require('../package.json'),
     version = pkg.version;
 
 program
     .version(version)
-    .option('-i, --input <file path>', 'target file')
-    .option('-o, --output <file path>', 'out file')
+    .option('-i, --input <file path>', 'target file', resolvePath)
+    .option('-o, --output <file path>', 'out file', resolvePath)
     .option('-s, --string <string>', 'chinese string');
 
 program.on('--help', function() {
     console.log('  Examples:');
     console.log('');
-    console.log('    cn2uc --input /path/to/inputfile --output /path/to/outfile');
-    console.log('    cn2uc --string "去哪吃啊？"');
+    console.log('    cn2uc -i /path/to/inputfile -o /path/to/outfile');
+    console.log('    or');
+    console.log('    cn2uc -s "去哪吃啊？"');
     console.log('');
 });
 
 program.parse(process.argv);
+
+/**
+ * show help information if no argv
+ */
+if (!program.input && !program.string) {
+    program.help();
+}
 
 /**
  * replace chinese to unicode
@@ -30,6 +39,15 @@ function replaceCode(str) {
     return str.replace(/[^\x00-\xff]/g, function(chinese) {
         return escape(chinese).replace(/%u/g, '\\u');
     });
+}
+
+/**
+ * resolve file path
+ * @param  {string} filePath file path
+ * @return {string}          resolved file path
+ */
+function resolvePath(filePath) {
+    return filePath ? path.resolve(filePath) : '';
 }
 
 if (program.input) {
