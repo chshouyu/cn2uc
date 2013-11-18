@@ -1,0 +1,25 @@
+{
+    "name": "cn2uc",
+    "version": "1.0.0",
+    "description": "中文转unicode",
+    "bin": {
+        "cn2uc": "./bin/cn2uc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/chshouyu/cn2uc.git"
+    },
+    "keywords": [
+        "chinese",
+        "unicode",
+        "transfer"
+    ],
+    "author": {
+        "name": "chshouyu",
+        "email": "chshouyu@126.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/chshouyu/cn2uc/issues"
+    }
+}
