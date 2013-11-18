@@ -25,7 +25,7 @@ program.parse(process.argv);
 /**
  * show help information if no argv
  */
-if (!process.argv.slice(2).length) {
+if (!program.input && !program.string) {
     program.help();
 }
 
