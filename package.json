@@ -21,5 +21,8 @@
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/chshouyu/cn2uc/issues"
+    },
+    "dependencies": {
+        "commander": "~2.0.0"
     }
 }
