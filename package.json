@@ -1,6 +1,6 @@
 {
     "name": "cn2uc",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "中文转unicode",
     "bin": {
         "cn2uc": "./bin/cn2uc"
