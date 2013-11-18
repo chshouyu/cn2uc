@@ -3,6 +3,23 @@ cn2uc
 
 中文转unicode
 
+```
+Usage: cn2uc [options]
+
+  Options:
+
+    -h, --help                output usage information
+    -V, --version             output the version number
+    -i, --input <file path>   target file
+    -o, --output <file path>  out file
+    -s, --string <string>     chinese string
+
+  Examples:
+
+    cn2uc --input /path/to/inputfile --output /path/to/outfile
+    cn2uc --string "去哪吃啊？"
+```
+
 The MIT License (MIT)
 
 Copyright (c) 2013 chshouyu

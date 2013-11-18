@@ -1,20 +1,43 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
+var fs = require('fs'),
+    program = require('commander');
 
-var arg = process.argv.slice(2);
+program
+    .version('1.0.0')
+    .option('-i, --input <file path>', 'target file')
+    .option('-o, --output <file path>', 'out file')
+    .option('-s, --string <string>', 'chinese string');
 
-if (arg[0]) {
+program.on('--help', function() {
+    console.log('  Examples:');
+    console.log('');
+    console.log('    cn2uc --input /path/to/inputfile --output /path/to/outfile');
+    console.log('    cn2uc --string "去哪吃啊？"');
+    console.log('');
+});
+
+program.parse(process.argv);
+
+// if (!program.args.length) program.help();
+
+function replaceCode(str) {
+    return str.replace(/[^\x00-\xff]/g, function(chinese) {
+        return escape(chinese).replace(/%u/g, '\\u');
+    });
+}
+
+if (program.input) {
     try {
-        var content = fs.readFileSync(arg[0], 'utf-8');
-        content = content.replace(/[^\x00-\xff]/g, function(chinese) {
-            return escape(chinese).replace(/%u/g, '\\u');
-        });
-        fs.writeFileSync(arg[1] || arg[0], content, 'utf-8');
-        console.log('transfer ' + arg[0] + ' ok');
+        var content = fs.readFileSync(program.input, 'utf-8');
+        content = replaceCode(content);
+        fs.writeFileSync(program.output || program.input, content, 'utf-8');
+        console.log('transfer ' + program.input + ' ok');
     } catch (e) {
         console.log(e);
     }
-} else {
-    console.log('are you testing me?');
+}
+
+if (program.string) {
+    console.log(replaceCode(program.string));
 }
