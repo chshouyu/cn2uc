@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
-    program = require('commander');
+    program = require('commander'),
+    pkg = require('../package.json'),
+    version = pkg.version;
 
 program
-    .version('1.0.0')
+    .version(version)
     .option('-i, --input <file path>', 'target file')
     .option('-o, --output <file path>', 'out file')
     .option('-s, --string <string>', 'chinese string');
