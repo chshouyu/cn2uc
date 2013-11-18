@@ -24,6 +24,7 @@ Usage: cn2uc [options]
   Examples:
 
     cn2uc --input /path/to/inputfile --output /path/to/outfile
+    or
     cn2uc --string "去哪吃啊？"
 ```
 
